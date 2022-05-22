@@ -9,12 +9,21 @@
 </template>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #fff;
+  background-color: #000;
+  scroll-behavior: smooth;
+}
+
+#logo {
+  font-size: 36px;
+  color: #fff;
 }
 
 nav {
