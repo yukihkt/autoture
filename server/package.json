@@ -1,0 +1,31 @@
+{
+  "name": "tutorial",
+  "version": "1.0.0",
+  "description": "An Sawtooth tutorial walkthrough",
+  "main": "index.js",
+  "scripts": {
+    "contract": "node transaction-processor.js",
+    "start": "node main.js",
+    "dev": "nodemon main.js"
+  },
+  "author": "John S",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "bcrypt": "^5.0.1",
+    "cbor": "^8.1.0",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "express": "^4.18.1",
+    "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.2",
+    "nodemailer": "^6.7.5",
+    "nodemailer-sendgrid-transport": "^0.2.0",
+    "sawtooth-sdk-js": "^1.2.0",
+    "secp256k1": "^4.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
