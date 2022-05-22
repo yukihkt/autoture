@@ -10,8 +10,32 @@
 ## 🔥 Autoture Overview
 
 ## ✨ Project Setup: How to Install and Run Our Web Application (for Developers)
-* Install Vue CLI
+* install vue cli
 ```
 sudo npm install -g @vue/cli --unsafe-perm
 ```
+* install required dependencies 
+
+```
+npm install
+```
+
+* compiles and hot-reloads for development
+```
+npm run serve
+```
+
+* compiles and minifies for production
+```
+npm run build
+```
+
+* lints and fixes files
+```
+npm run lint
+```
+
+* Customize configuration
+> See [Configuration Reference](https://cli.vuejs.org/config/).
+
 ## 🧑🏻‍💻 Architecture Diagram
