@@ -9,14 +9,14 @@ This is an example of how to list things you need to use the software and how to
 
 ### Understanding Hyperledger Sawtooth 
 
-1. Understanding the basic concepts of sawtooth
-![Sawtooth](https://i.ibb.co/sjwsLTF/Screenshot-2022-05-23-at-11-32-17-PM.png | width=50) 
+1. Understanding the basic concepts of sawtooth\
+![Sawtooth](https://i.ibb.co/sjwsLTF/Screenshot-2022-05-23-at-11-32-17-PM.png|width=50) 
 
 
-2. Understanding what is a Transaction Family 
+2. Understanding what is a Transaction Family\
 ![transactionfamily](https://i.ibb.co/hYHNHY3/Screenshot-2022-05-23-at-11-42-45-PM.png)
 
-3. Smart Contracts ≈ Transactions
+3. Smart Contracts ≈ Transactions\
 ![transactions](https://i.ibb.co/bb3Cr9X/Screenshot-2022-05-23-at-11-42-59-PM.png)
 
 <!-- GETTING STARTED -->
