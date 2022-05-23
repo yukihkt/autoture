@@ -47,11 +47,11 @@ exports.registerUser = async (req, res) => {
         username: req.body.username
     })
 
-    const email = await User.findOne({
+    const emailAddr = await User.findOne({
         email: req.body.email
     })
 
-    if (user || email) {
+    if (user || emailAddr) {
         return res.status(409).json({
             message: 'User/Email already exist'
         })
@@ -59,8 +59,10 @@ exports.registerUser = async (req, res) => {
     
 
     const { privateKey, publicKey } = createPrivateKey();
-    const { username, name, password } = valid.value;
+    const { username, name, email, role, password } = valid.value;
+    // console.log(valid.value)
     const encryptedPass = bcrypt.hashSync(password.trim(), 10)
+    // console.log(encryptedPass)
     await User.create({
         username,
         name,
