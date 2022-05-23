@@ -10,7 +10,7 @@ This is an example of how to list things you need to use the software and how to
 ### Understanding Hyperledger Sawtooth 
 
 1. Understanding the basic concepts of sawtooth\
-![Sawtooth](https://i.ibb.co/sjwsLTF/Screenshot-2022-05-23-at-11-32-17-PM.png|width=50) 
+![Sawtooth](https://i.ibb.co/sjwsLTF/Screenshot-2022-05-23-at-11-32-17-PM.png|width=30) 
 
 
 2. Understanding what is a Transaction Family\
@@ -18,6 +18,9 @@ This is an example of how to list things you need to use the software and how to
 
 3. Smart Contracts ≈ Transactions\
 ![transactions](https://i.ibb.co/bb3Cr9X/Screenshot-2022-05-23-at-11-42-59-PM.png)
+
+4. Using the basic Sawtooth API to make the contracts\
+![transactions](https://i.ibb.co/6mPwf4k/Screenshot-2022-05-24-at-12-07-41-AM.png)
 
 <!-- GETTING STARTED -->
 ## Getting Started
