@@ -12,13 +12,36 @@ exports.actions = {
     pull_off_sale: 'pull_off_sale',
 }
 
+// exports.actions = {
+//     initiate_wallet: 'init_wallet',
+//     add_schedule: 'add_schedule',
+//     start_task: 'start_task',
+//     approve_task: 'approve_task',
+//     fund_task: 'fund_task',
+//     release_funds: 'release_funds',
+//     end_project: 'end_project'
+// }
+
+exports.project_state = {
+    initiated: "initiated",
+    accepted: "accepted",
+    closed: "closed"
+}
+
+exports.scheduleState = {
+    planned: "planned",
+    funded: "funded",
+    started: "started",
+    approved: "approved",
+    released: "released"
+}
 
 exports.namespace = {
-    vin: hash('vin').substring(0,2)
+    vin: hash('autoture').substring(0,2)
 }
 
 exports.family = {
-    name: 'vin-sell',
-    namespace: hash('vin-sell').substring(0,6),
+    name: 'autoture',
+    namespace: hash('autoture').substring(0,6),
     version: '1.0'
 }
