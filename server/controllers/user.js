@@ -16,14 +16,23 @@ exports.loginUser = async (req, res) => {
     const { username, password } = valid.value
     const user = await User.findOne({
         username,
-        password,
     })
+
+  
+   
     if (!user) {
         return res.status(400).json({
             message: 'Username or password incorrect'
         })
     }
-    const { publicKey } = user;
+
+    if (!bcrypt.compareSync(password, user.password)) {
+        return res.status(400).json({
+            message: 'Password incorrect'
+        })
+    }
+
+    const { publicKey } = user; // taking the publicKey out of the user info
     const token = jwt.sign({
         username,
         publicKey
@@ -35,6 +44,8 @@ exports.loginUser = async (req, res) => {
             access_token: token
         }
     )
+    
+    
 }
 
 exports.registerUser = async (req, res) => {
@@ -59,16 +70,14 @@ exports.registerUser = async (req, res) => {
     
 
     const { privateKey, publicKey } = createPrivateKey();
-    const { username, name, email, role, password } = valid.value;
-    // console.log(valid.value)
-    const encryptedPass = bcrypt.hashSync(password.trim(), 10)
-    // console.log(encryptedPass)
+    const { username, name, email, role} = valid.value;
+    const password = bcrypt.hashSync(req.body.password.trim(), 10);
     await User.create({
         username,
         name,
         email, 
         role,
-        encryptedPass,
+        password,
         privateKey,
         publicKey
     })
