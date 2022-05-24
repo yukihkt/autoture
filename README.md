@@ -38,6 +38,6 @@ npm run lint
 * Customize configuration
 > See [Configuration Reference](https://cli.vuejs.org/config/).
 
-## 🧑🏻‍💻 Architecture Diagram\
-<img src="https://i.ibb.co/xsy1d81/Blank-diagram-GCP-horizontal-framework-7.png" align="left" width="50%" >
+## 🧑🏻‍💻 Architecture Diagram
+<img src="https://i.ibb.co/xsy1d81/Blank-diagram-GCP-horizontal-framework-7.png" align="left" >
 
