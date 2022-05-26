@@ -12,13 +12,20 @@
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
 
+* {
+  background-color: #000;
+}
+
+body {
+  margin: 0;
+}
+  
 #app {
   font-family: "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #fff;
-  background-color: #000;
   scroll-behavior: smooth;
 }
 
@@ -38,5 +45,13 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.midyellow {
+  color: #FFBD59;
+}
+
+.violet {
+  color:#CE90FF;
 }
 </style>
