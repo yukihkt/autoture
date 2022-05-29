@@ -28,8 +28,10 @@ app.use('/api', authMiddleware, vehicle)
 
 
 const start = async () => {
+
     try {
-        await mongoose.connect('mongodb://localhost:27017/autoture');
+       
+        //await mongoose.connect('mongodb://localhost:27017/autoture');
         //await mongoose.connect('mongodb://mongo:27017/autoture');
         // Server run
         app.listen(port, '0.0.0.0', () => {

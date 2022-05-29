@@ -2,17 +2,11 @@
 
 FROM node:16.15
 
-
-WORKDIR /app
 COPY package*.json .
+WORKDIR /app
 RUN npm install
-COPY . .
-CMD npm run serve
-
-WORKDIR /server
-COPY server/package*.json .
-RUN npm install
-COPY /server/. /server/.
-CMD npm run dev
+EXPOSE 8080
+COPY . ./
+CMD ["npm", "run", "start"]
 # CMD npm run start - run this when production server
 
