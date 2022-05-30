@@ -290,7 +290,7 @@ app.component("schedule-table", {
   template: `
       <!-- Autoture table -->
       <div class="row">
-          <table class="table table-borderless text-center">
+          <table class="table table-borderless text-center" v-show="isContractExist">
               <thead>
                   <tr>
                       <th scope="col">Stage</th>
@@ -307,7 +307,7 @@ app.component("schedule-table", {
                       <td>{{each_schedule.value}}</td>
                       <td><span class="badge badge-primary state-badge">{{each_schedule.state}}</span></td>
                       <td>
-                          <button class="btn btn-primary" @click="">{{each_schedule.action}}</button>
+                          <button class="btn btn-primary" @click="" v-show="isAction">{{each_schedule.action}}</button>
                           <!-- <div class="spinner-border spinner-border-sm text-light ml-3" role="status"> -->
                           <!-- <span class="sr-only">Loading...</span></div> -->
                       </td>
@@ -362,20 +362,7 @@ app.component("schedule-table", {
       value: "",
       state: "Planned",
       action: "Fund",
-      schedules: [
-        // {
-        //   description: "test1",
-        //   value: "value1",
-        //   state: "Planned",
-        //   action: "Fund",
-        // },
-        // {
-        //   description: "test2",
-        //   value: "value2",
-        //   state: "Planned",
-        //   action: "Fund",
-        // },
-      ],
+      schedules: [],
     };
   },
   computed: {
@@ -391,6 +378,48 @@ app.component("schedule-table", {
             value += schedules[i].value
         }
         return value
+    },
+    isContractExist() {
+      const address = sessionStorage.getItem('contractAddress')
+      if (address != null && address.length > 10) { 
+        return true 
+      }
+      return false
+    },
+    isAction() {
+      const path = window.location.pathname;
+      const currentPage = path.split("/").pop();
+      const projectState = sessionStorage.getItem('projectState')
+      for (let i = 0; i < this.schedules.length; i++) {
+
+        if (currentPage == "freelancer.html" && this.schedules[i].state == "Planned") {
+          // false
+        }
+
+        if (currentPage == "freelancer.html" && this.schedules[i].state == "Released") {
+          // false
+        }
+
+        if (currentPage == "freelancer.html" && this.schedules[i].state == "Funded") {
+          // true
+          for (let i = 0; i < this.schedules.length; i++) {
+            if (this.schedules[i].state == "Funded") {
+              this.schedules[i].action = "Start Schedule"
+            }
+          }
+          return true
+        }
+
+        if (currentPage == "client.html" && this.schedules[i].state == "Started") {
+          // true
+        }
+
+        if (currentPage == "freelancer.html" && this.schedules[i].state == "Approved") {
+          // true
+        }
+
+
+      }
     }
   },
   directives: {
@@ -412,6 +441,9 @@ app.component("schedule-table", {
         state: this.state,
         action: this.action,
       });
+
+      sessionStorage.setItem("allSchedules", JSON.stringify(this.schedules))
+
       this.description = "";
       this.value = "";
     },
@@ -423,20 +455,26 @@ app.component("schedule-table", {
       }
     },
   },
-  // created() {
-  //     axios.get('url for data call')
-  //         .then(response => {
-  //             this.schedules = response.data
-  //         })
-  //         .catch(error => {
-  //             this.schedules = [{ entry: 'There was an error: ' + error.message }]
-  //         })
-  // }
+    created() {
+      const schedules = sessionStorage.getItem("allSchedules")
+      var totalContractValue = 0
+      if (schedules != null) {
+        this.schedules = JSON.parse(schedules);
+      }
+
+      for (let i = 0; i < this.schedules.length; i++) {
+        totalContractValue += this.schedules[i].value
+      }
+
+      sessionStorage.setItem("contractValue", totalContractValue);
+      //sessionStorage.setItem("disbursedValue", this.disbursedValue)
+
+    }
 });
 
 app.component("account-details", {
   template: `
-      <div class="card autocard">
+      <div class="card autocard" v-show="isContractExist">
       <div class="card-body">
           <div class="card-details">
               <p class="box-title">Contract Address</p>
@@ -460,12 +498,12 @@ app.component("account-details", {
           </div>
       </div>
   </div>
-  <div id="card-buttons">
+  <div id="card-buttons" v-show="isContractExist">
       <button type="button" class="btn btn-primary font-weight-bold" data-toggle="modal"
-          data-target="#scheduleModal">Add Schedule</button>
-      <button type="button" class="btn btn-dark font-weight-bold ml-3" disabled>End Project</button>
-      <button type="button" class="btn btn-success font-weight-bold ml-3">Accept Project</button>
-        <button type="button" class="btn btn-light font-weight-bold ml-3">Refresh</button>
+          data-target="#scheduleModal" v-show="scheduleButton">Add Schedule</button>
+      <button type="button" class="btn btn-dark font-weight-bold ml-3" v-show="endProjectButton">End Project</button>
+      <button type="button" class="btn btn-success font-weight-bold ml-3" v-show="acceptProjectButton">Accept Project</button>
+        <button type="button" class="btn btn-light font-weight-bold ml-3" @click="refreshButton">Refresh</button>
   </div>
   
       `,
@@ -478,45 +516,70 @@ app.component("account-details", {
     };
   },
   computed: {
-    currentContractState() {
-      thisState = "";
-
-      switch (contractState) {
-        case "Initiated":
-          thisState = "badge badge-initiated";
-          break;
-        case "Accepted":
-          thisState = "badge badge-success";
-          break;
-        default:
-          thisState = "badge badge-initiated";
-          break;
+  
+    isContractExist() {
+      const address = sessionStorage.getItem('contractAddress')
+      const cwallet = sessionStorage.getItem('clientWallet')
+      const fwallet = sessionStorage.getItem('freelancerWallet')
+      const projectState = sessionStorage.getItem('projectState')
+      if (address != null && address.length > 10) { 
+        this.contractAddress = address
+        this.freelancerAddress = fwallet
+        this.clientAddress = cwallet
+        this.contractState = projectState
+        return true 
       }
+      return false
+    }, scheduleButton() {
+      const path = window.location.pathname;
+      const currentPage = path.split("/").pop();
 
-      return thisState;
-    },
+      if (currentPage == 'freelancer.html') {
+        if (this.contractState == 'Initiated') {
+          return true
+        }
+        return false
+      } 
+    }, endProjectButton() {
+      const path = window.location.pathname;
+      const currentPage = path.split("/").pop();
+
+      if (currentPage == 'freelancer.html') {
+        if (this.contractState == 'Accepted') {
+          return true
+        }
+        return false
+      } 
+    }, acceptProjectButton() {
+      const path = window.location.pathname;
+      const currentPage = path.split("/").pop();
+
+      if (currentPage == 'client.html') {
+        if (this.contractState == 'Initiated') {
+          return true
+        }
+        return false
+      }
+    } 
   },
-  methods: {},
-  // created() {
-  //     axios.get('url for data call')
-  //         .then(response => {
-  //             this.schedules = response.data
-  //         })
-  //         .catch(error => {
-  //             this.schedules = [{ entry: 'There was an error: ' + error.message }]
-  //         })
-  // }
+  methods: {
+    refreshButton() {
+    document.location.reload()
+  }, acceptButton() {
+    sessionStorage.setItem("projectState", this.projectState)
+  }
+}
 });
 
 app.component("wallet-details", {
   template: `
-      <div class="card autocard">
+      <div class="card autocard" v-show="isContractExist">
       <div class="card-body text-center">
           <h5 class="card-title">Total Contract Value (ETH)</h5>
           <p class="card-title h2">{{this.contractValue}}</p>
       </div>
   </div>
-  <div class="card autocard mt-3">
+  <div class="card autocard mt-3" v-show="isContractExist">
       <div class="card-body text-center">
           <h5 class="card-title">Disbursed Value (ETH)</h5>
           <p class="card-title h2">{{this.disbursedValue}}</p>
@@ -531,81 +594,84 @@ app.component("wallet-details", {
       disbursedValue: 0,
     };
   },
-  computed: {},
-  methods: {},
-  // created() {
-  //     axios.get('url for data call')
-  //         .then(response => {
-  //             this.schedules = response.data
-  //         })
-  //         .catch(error => {
-  //             this.schedules = [{ entry: 'There was an error: ' + error.message }]
-  //         })
-  // }
+  computed: {
+    isContractExist() {
+      const address = sessionStorage.getItem('contractAddress')
+      if (address != null && address.length > 10) { 
+        this.contractValue = sessionStorage.getItem('contractValue');
+        this.disbursedValue = sessionStorage.getItem('disbursedValue');
+        return true 
+      }
+      return false
+    }
+  },
+  methods: {}
 });
 
 
 app.component("search-contracts", {
     template: `
     <div class="col-md-12 text-center">
-        <p class="title-2"><span class="badge badge-warning">Freelancer</span> Smart Contract</p>
+        <p class="title-2">Smart Contracts for <span class="badge badge-warning">{{this.role}}</span> </p>
     </div>
     <div class="col-md-12 text-center col-md-offset-6">
         <div class="input-group mt-2 form-2">
             <input type="text" class="form-control w-50"
-                placeholder="Enter contract address or leave blank to deploy a new one" v-model="contractAddress">
+                :placeholder="this.contractPlaceholder" v-model="contractAddress">
         </div>
     </div>
     <div class="col-md-12 text-center mt-3">
-        <button class="search_btn" @click="findContract">Go</button>
+        <button class="search_btn" @click="findContract">{{this.search_txt}}</button>
     </div>
       
           `,
     data() {
       return {
         // data_base should be updated via axios method
-        contractaddress: ''
+        contractaddress: '',
+        role: 'Freelancer',
+        search_txt: 'Go',
+        contractPlaceholder: 'Enter contract address or leave blank to deploy a new one',
+        freelancerAddress: 'DA26B5DBEA20BD5',
+        clientAddress: '235F5D26E852472E',
+        contractValue: 0,
+        disbursedValue: 0,
+        projectState: 'Initiated'
       };
     },
     computed: {},
     methods: {
         findContract() {
+            sessionStorage.clear()
+
             this.errors = [];
             const contract = {
               contractAddress: this.contractAddress
             };
-      
-      
-            // if (this.contractAddress != null) {
-            //   axios
-            //     .post(encodeURI(API_URI + "/validator"), contract)
-            //     .then((response) => {
-                  
-            //       if (response.data) {
-            //         this.contractExist = true
-            //       }
 
-                  
-      
-            //       if (response.data.message) {
-            //         this.errors.push(response.data.message);
-            //       }
-            //     })
-            //     .catch((err) => {
-            //       this.errors.push(err.response.data.message);
-            //     });
-            // } 
+            sessionStorage.setItem("contractAddress", this.contractAddress);
+            sessionStorage.setItem("freelancerWallet", this.freelancerAddress);
+            sessionStorage.setItem("clientWallet", this.clientAddress)
+            sessionStorage.setItem("contractValue", this.contractValue);
+            sessionStorage.setItem("disbursedValue", this.disbursedValue)
+            sessionStorage.setItem("projectState", this.projectState)
+            document.location.reload()
+            
           },
     },
-    // created() {
-    //     axios.get('url for data call')
-    //         .then(response => {
-    //             this.schedules = response.data
-    //         })
-    //         .catch(error => {
-    //             this.schedules = [{ entry: 'There was an error: ' + error.message }]
-    //         })
-    // }
+    created() {
+      const path = window.location.pathname;
+      const currentPage = path.split("/").pop();
+      if (currentPage == "client.html") {
+        this.role = 'Client'
+        this.search_txt = "Search"
+        this.contractPlaceholder = 'Find contract address'
+      } else {
+        this.role = 'Freelancer'
+        this.search_txt = "Go"
+        this.contractPlaceholder = 'Enter contract address or leave blank to deploy a new one'
+      }
+    }
 });
   
 
