@@ -38,8 +38,8 @@
 <body>
     <div id="app">
         <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg mt-3">
-                <a class="navbar-brand" href="login.html">Autoture</a>
+            <nav class="navbar navbar-expand-lg pt-3 mx-3 sticky-top navbar-dark">
+                <a class="navbar-brand" href="home.html">Autoture</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#autotureToggler"
                     aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -47,41 +47,37 @@
 
                 <div class="collapse navbar-collapse" id="autotureToggler">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                        <p class="nav-text">Switch to...</p>
-                        <li class="nav-item ml-3">
-                            <button type="button" class="btn btn-outline-light nav-button"
-                                onclick="routeToPage('client')">Client</button>
+                        <p class="nav-text">I am a...</p>
+                        <li class="nav-item">
+                            <button type="button" class="btn btn-outline-light nav-button" onclick="routeToPage('client')">Client</button>
                         </li>
-                        <p class="nav-text">or</p>
                         <li class="nav-item ml-3">
-                            <button type="button" class="btn btn-outline-light nav-button"
-                                onclick="logout()">Log out</button>
+                            <button type="button" class="btn btn-outline-light nav-button" onclick="routeToPage('freelancer')">Freelancer</button>
                         </li>
                     </ul>
-
                 </div>
             </nav>
 
             <div class="container">
-            <div class="row d-flex justify-content-center text-center mt-5">
-                <search-contracts></search-contracts>
-            </div>
-
-            <div class="row mt-5">
-                <div class="col-md-7 col-md-offset-5 my-4">
-                    <account-details></account-details>
+                <div class="row d-flex justify-content-center text-center mt-5">
+                    <search-contracts></search-contracts>
                 </div>
-                <div class="col-md-5 my-4">
-                    <wallet-details></wallet-details>
+
+                <div class="row mt-5">
+                    <div class="col-md-7 col-md-offset-5 my-4">
+                        <account-details></account-details>
+                    </div>
+                    <div class="col-md-5 my-4">
+                        <wallet-details></wallet-details>
+                    </div>
                 </div>
-            </div>
 
-           <schedule-table></schedule-table>
-
+            <schedule-table></schedule-table>
             </div>
+            
             <hr>
             <!--Footer-->
-            <div class="row my-5">
+            <div class="row mt-3 mb-5 mx-3">
                 <div class="col-md-8 my-4">
                     <p class="logo-footer">Autoture</p>
                     <p class="text-white">Get the latest updates</p>
@@ -98,14 +94,14 @@
                 <div class="col-md-2 my-4 py-1 justify-content-center footer-3">
                     <p class="font-weight-bold text-white">Autoture</p>
                     <p><a href="#">Explore</a></p>
-                    <p><a href="#">How it Works</a></p>
-                    <p><a href="#">Contact us</a></p>
+                    <p><a href="#">How It Works</a></p>
+                    <p><a href="#">Contact Us</a></p>
                 </div>
 
                 <div class="col-md-2 my-4 py-1 justify-content-center footer-2">
                     <p class="font-weight-bold text-white">Support</p>
-                    <p><a href="#">Help center</a></p>
-                    <p><a href="#">Terms of service</a></p>
+                    <p><a href="#">Help Center</a></p>
+                    <p><a href="#">Terms of Service</a></p>
                     <p><a href="#">Legal</a></p>
                     <p><a href="#">Privacy Policy</a></p>
                 </div>
@@ -114,7 +110,7 @@
 
             <hr>
 
-            <div class="row my-5">
+            <div class="row my-5 mx-3">
                 <div class="col-md-4 justify-content-center">
                     <p class="text-white">Autoture 2022 ©. All Rights Reserved</p>
                 </div>

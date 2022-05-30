@@ -8,6 +8,19 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     overflow-x: hidden;
+    padding: auto 0;
+}
+
+nav {
+    backdrop-filter: blur(1px);
+}
+
+.midyellow {
+    color: #FFBD59;
+}
+
+.violet {
+    color:#CE90FF;
 }
 
 .navbar-brand {
