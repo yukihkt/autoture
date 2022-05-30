@@ -655,6 +655,7 @@ app.component("search-contracts", {
             sessionStorage.setItem("contractValue", this.contractValue);
             sessionStorage.setItem("disbursedValue", this.disbursedValue)
             sessionStorage.setItem("projectState", this.projectState)
+            sessionStorage.setItem("allSchedules", [])
             document.location.reload()
             
           },
