@@ -501,8 +501,8 @@ app.component("account-details", {
   <div id="card-buttons" v-show="isContractExist">
       <button type="button" class="btn btn-primary font-weight-bold" data-toggle="modal"
           data-target="#scheduleModal" v-show="scheduleButton">Add Schedule</button>
-      <button type="button" class="btn btn-dark font-weight-bold ml-3" v-show="endProjectButton">End Project</button>
-      <button type="button" class="btn btn-success font-weight-bold ml-3" v-show="acceptProjectButton">Accept Project</button>
+      <button type="button" class="btn btn-dark font-weight-bold ml-3" v-show="endProjectButton" @click="ePButton">End Project</button>
+      <button type="button" class="btn btn-success font-weight-bold ml-3" v-show="acceptProjectButton" @click="acceptButton">Accept Project</button>
         <button type="button" class="btn btn-light font-weight-bold ml-3" @click="refreshButton">Refresh</button>
   </div>
   
@@ -566,7 +566,11 @@ app.component("account-details", {
     refreshButton() {
     document.location.reload()
   }, acceptButton() {
-    sessionStorage.setItem("projectState", this.projectState)
+    sessionStorage.setItem("projectState", "Accepted")
+    document.location.reload()
+  }, ePButton() {
+    sessionStorage.setItem("projectState", "End Project")
+    document.location.reload()
   }
 }
 });
