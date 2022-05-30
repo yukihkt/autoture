@@ -25,6 +25,8 @@
     <!-- Axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
+    <!-- Typewriter JS -->
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
 </head>
 
 <body>
@@ -58,7 +60,8 @@
                 <!-- <div class="row"></div> -->
                 <div class="row d-flex mt-3 text-center justify-content-center">
                     <h1 class="header w-75">
-                        Securing payments for <span class="violet">Freelancers</span>
+                        Securing payments for <br>
+                        <span id="typed"></span>
                     </h1>
                     <h2 class="midyellow subtitle">
                         Fuss-free transactions to put your mind at ease.
@@ -241,5 +244,27 @@
     <script src="./js/components/auth.js"></script>
     <script src="./js/app.js"></script>
     
+    <script>
+        // Typewriter JS
+        var typed = document.getElementById('typed');
+
+        var typewriter = new Typewriter(typed, {
+            loop: true,
+            autoStart: true,
+            skipAddStyles: true,
+        });
+
+        typewriter.typeString('<span style="color:#CE90FF">Freelancers</style>')
+            .changeDeleteSpeed(500)
+            .changeDelay(100)
+            .pauseFor(1000)
+            .deleteAll()
+            .typeString('<span style="color:#CE90FF">Clients</style>')
+            .pauseFor(1000)
+            .deleteAll()
+            .typeString('<span style="color:#CE90FF">Everyone!</style')
+            .pauseFor(1000)
+            .start();
+    </script>
 </body>
 </html>
