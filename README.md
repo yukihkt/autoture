@@ -1,11 +1,5 @@
 # Autoture
 
-## Table of Contents
-* [About Autoture]()
-* [Prototype Video]()
-* [Project Setup]()
-* [User Guide]()
-* [Architecture Diagram]()
 
 ## 🔥 Autoture Overview
 ### Prerequisites

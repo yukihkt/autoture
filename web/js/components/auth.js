@@ -410,6 +410,16 @@ app.component("schedule-table", {
           return true
         }
 
+        if (currentPage == "client.html" && this.schedules[i].state == "Planned" && projectState == "Accepted") {
+          // true
+          for (let i = 0; i < this.schedules.length; i++) {
+            if (this.schedules[i].state == "Planned") {
+              this.schedules[i].action = "Fund"
+            }
+          }
+          return true
+        }
+
         if (currentPage == "client.html" && this.schedules[i].state == "Started") {
           // true
         }
@@ -646,7 +656,7 @@ app.component("search-contracts", {
     computed: {},
     methods: {
         findContract() {
-            sessionStorage.clear()
+            sessionStorage.removeItem("contractAddress")
 
             this.errors = [];
             const contract = {
