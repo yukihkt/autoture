@@ -5,7 +5,9 @@ services:
 
   mongo:
     image: mongo
+    hostname: mongo
     restart: always
+    container_name: mongo
     volumes:
       - ./mongo_data:/data/db
     ports:
@@ -70,18 +72,21 @@ services:
         sawtooth keygen && \
         tail -f /dev/null \
         \""
-  express-server:
-    build: .
-    restart: always
-    volumes:
-      - .:/app
-      - .:/app/node_modules
-    ports:
-      - "8080:8080"
-    environment:
-      PORT: 8080
-    depends_on:
-      - mongo
+  # express-server:
+  #   build: .
+  #   restart: always
+  #   hostname: "express-server"
+  #   volumes:
+  #     - .:/app
+  #     - .:/app/node_modules
+  #   ports:
+  #     - "8080:8080"
+  #   links:
+  #     - mongo
+  #   environment:
+  #     PORT: 8080
+  #   depends_on:
+  #     - mongo
 
 
 networks:

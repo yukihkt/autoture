@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Autoture - Client Dashboard</title>
 
+    <link rel="icon" type="image/x-icon" href="img/favicon.png">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
@@ -37,7 +38,7 @@
 <body>
 
     <div id="app">
-        <div class="container">
+        <div class="container-fluid">
 
             <nav class="navbar navbar-expand-lg mt-3">
                 <a class="navbar-brand" href="login.html">Autoture</a>
@@ -61,98 +62,23 @@
 
                 </div>
             </nav>
-
-            <div class="row d-flex justify-content-center text-center mt-5">
-                <div class="col-md-12 text-center">
-                    <p class="title-2">Smart Contract for <span class="badge badge-warning">Clients</span></p>
+            <div class="container">
+                <div class="row d-flex justify-content-center text-center mt-5">
+                    <search-contracts></search-contracts>
                 </div>
-                <div class="col-md-12 text-center col-md-offset-6">
-                    <div class="input-group mt-2 form-2">
-                        <input type="text" class="form-control w-50" placeholder="Enter Contract address">
+    
+                <div class="row mt-5">
+                    <div class="col-md-7 col-md-offset-5 my-4">
+                        <account-details></account-details>
+                    </div>
+                    <div class="col-md-5 my-4">
+                        <wallet-details></wallet-details>
                     </div>
                 </div>
-                <div class="col-md-12 text-center mt-3">
-                    <button class="search_btn">Search</button>
+    
+               <schedule-table></schedule-table>
+    
                 </div>
-            </div>
-
-            <div class="row mt-5">
-                <div class="col-md-7 col-md-offset-5 my-4">
-                    <div class="card autocard">
-                        <div class="card-body">
-                            <div class="card-details">
-                                <p class="box-title">Contract Address</p>
-                                <p class="box-description">XXXXXXXXXXXXXXXX</p>
-                            </div>
-                            <div class="card-details freelancer-wallet">
-                                <p class="box-title">Freelancer Wallet</p>
-                                <p class="box-description">XXXXXXXXXXXXXXXX</p>
-                            </div>
-                            <div class="card-details client-wallet">
-                                <p class="box-title">Client Wallet</p>
-                                <p class="box-description">XXXXXXXXXXXXXXXX</p>
-                            </div>
-                            <div class="card-details">
-                                <p class="box-title">Project Stage & State</p>
-                                <p class="box-description">
-                                    <span class="badge badge-dvp" data-toggle="tooltip" data-placement="top"
-                                        title="Tooltip on top">DVP</span>
-                                    <span class="badge badge-initiated">Initiated</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="card-buttons">
-                        <button type="button" class="btn btn-success font-weight-bold">Accept Project</button>
-                        <button type="button" class="btn btn-light font-weight-bold ml-3">Refresh</button>
-                    </div>
-                </div>
-                <div class="col-md-5 my-4">
-                    <div class="card autocard">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Total Contract Value (ETH)</h5>
-                            <p class="card-title h2">0</p>
-                        </div>
-                    </div>
-                    <div class="card autocard mt-3">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Disbursed Value (ETH)</h5>
-                            <p class="card-title h2">0</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Autoture table -->
-            <div class="row">
-                <table class="table table-borderless text-center">
-                    <thead>
-                        <tr>
-                            <th scope="col">Stage</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Value (ETH)</th>
-                            <th scope="col">State</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Design Phase</td>
-                            <td>1.25</td>
-                            <td><span class="badge badge-primary state-badge">Planned</span></td>
-                            <td>
-                                <button class="btn btn-primary">Fund</button>
-                                <div class="spinner-border spinner-border-sm text-light ml-3" role="status"><span
-                                        class="sr-only">Loading...</span></div>
-                            </td>
-                        </tr>
-
-                    </tbody>
-                </table>
-            </div>
-
             <hr>
             <!--Footer-->
             <div class="row my-5">

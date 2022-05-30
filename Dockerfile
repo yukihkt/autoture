@@ -6,7 +6,9 @@ COPY package*.json .
 WORKDIR /app
 RUN npm install
 EXPOSE 8080
-COPY . ./
+COPY . .
+
+
 CMD ["npm", "run", "start"]
 # CMD npm run start - run this when production server
 
