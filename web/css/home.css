@@ -102,3 +102,8 @@ body {
     background: #9661bf;
     box-shadow: 0 10px 30px rgba(145, 92, 182, .4);
 }
+
+
+.payment-modes {
+    width: 40%;
+}
