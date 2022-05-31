@@ -2,8 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://admin:MEOBreeze123@serverlessinstance0.rwwmi.mongodb.net/autoture?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 const gcpUri = "mongodb://34.152.37.64:27017/autoture?directConnection=true"
 
 
