@@ -1,17 +1,8 @@
-/**
- * @file freelance.sol
- * @author Jackson Ng <jackson@jacksonng.org>
- * @date created 17th Apr 2021
- * @date last modified 18th Apr 2021
- */
-
-//SPDX-License-Identifier: MIT
- 
 pragma solidity ^0.8.0;
 
 contract freelancer{
     
-    enum ScheduleState {planned, funded, started, approved, released}
+    enum ScheduleState {planned, funded, scheduled, approved, released}
     enum ProjectState {initiated, accepted, closed}
     
     struct schedule{
@@ -124,14 +115,14 @@ contract freelancer{
         inScheduleState(_scheduleID, ScheduleState.funded)
         onlyFreelancer
     {
-        scheduleRegister[_scheduleID].scheduleState = ScheduleState.started;
+        scheduleRegister[_scheduleID].scheduleState = ScheduleState.scheduled;
         emit taskStarted(_scheduleID);
     }
 
     function approveTask(int256 _scheduleID)
         public
         inProjectState(ProjectState.accepted)
-        inScheduleState(_scheduleID, ScheduleState.started)
+        inScheduleState(_scheduleID, ScheduleState.scheduled)
         onlyClient
     {
         scheduleRegister[_scheduleID].scheduleState = ScheduleState.approved;
